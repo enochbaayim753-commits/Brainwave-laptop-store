@@ -1,257 +1,501 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Brainwave Laptop Store | Dell, HP, Lenovo and more</title>
+  <meta name="description" content="Brainwave Laptop Store: browse laptops from Dell, HP, Lenovo, ASUS, Acer and Apple, and order on WhatsApp.">
 
-    <title>Brainwave Laptop Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+  <style>
+    /* ===== Colors and fonts (change them here) ===== */
+    :root {
+      --navy: #0a1f44;
+      --navy-deep: #06142e;
+      --blue: #1f6bff;
+      --teal: #12c2a5;
+      --gold: #ffb627;
+      --whatsapp: #1fa855;
+      --whatsapp-dark: #168a45;
+      --bg: #f3f6fb;
+      --card: #ffffff;
+      --text: #14213d;
+      --muted: #5b6785;
+      --line: #dde4f0;
+      --radius: 16px;
+      --font-head: "Sora", "Segoe UI", Arial, sans-serif;
+      --font-body: "DM Sans", "Segoe UI", Arial, sans-serif;
+    }
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
-            color: #222;
-        }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+    body {
+      font-family: var(--font-body);
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      font-size: 17px;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    .container { width: min(1140px, 92%); margin: 0 auto; }
 
-        header {
-            background: #071b35;
-            color: white;
-            text-align: center;
-            padding: 25px 15px;
-        }
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
 
-        header h1 {
-            margin: 0 0 10px;
-            font-size: 30px;
-        }
+    /* ===== Header and navigation ===== */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--navy-deep);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .logo {
+      font-family: var(--font-head); font-weight: 800; font-size: 1.25rem;
+      color: #fff; text-decoration: none; display: flex; align-items: center; gap: 10px;
+    }
+    .logo-mark {
+      width: 34px; height: 34px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      display: grid; place-items: center;
+    }
+    .logo span em { font-style: normal; color: var(--teal); }
+    nav ul { list-style: none; display: flex; align-items: center; gap: 6px; }
+    nav a {
+      color: #cfd9f0; text-decoration: none; font-weight: 500;
+      padding: 8px 14px; border-radius: 999px; display: block;
+    }
+    nav a:hover { color: #fff; background: rgba(255,255,255,.1); }
+    nav a.nav-cta { background: var(--whatsapp); color: #fff; font-weight: 700; }
+    nav a.nav-cta:hover { background: var(--whatsapp-dark); }
+    .menu-btn {
+      display: none; background: none; border: 1px solid rgba(255,255,255,.3);
+      color: #fff; font-size: 1.4rem; width: 44px; height: 44px; border-radius: 10px; cursor: pointer;
+    }
 
-        header p {
-            margin: 0;
-            color: #d6e5ff;
-        }
+    /* ===== Hero ===== */
+    .hero {
+      background:
+        radial-gradient(900px 400px at 85% 10%, rgba(18,194,165,.28), transparent 60%),
+        radial-gradient(700px 400px at 0% 100%, rgba(31,107,255,.35), transparent 60%),
+        var(--navy);
+      color: #fff;
+      padding: 72px 0 80px;
+      overflow: hidden;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+    .hero h1 {
+      font-family: var(--font-head); font-weight: 800;
+      font-size: clamp(2.1rem, 5vw, 3.6rem); line-height: 1.1; margin-bottom: 18px;
+    }
+    .hero p { color: #c3d0ee; font-size: 1.1rem; max-width: 520px; margin-bottom: 28px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 13px 24px; border-radius: 12px; font-weight: 700; font-size: 1rem;
+      text-decoration: none; border: 2px solid transparent; cursor: pointer;
+      font-family: var(--font-body); transition: background .2s, transform .15s;
+    }
+    .btn:active { transform: scale(.98); }
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-primary:hover { background: #1556d1; }
+    .btn-ghost { border-color: rgba(255,255,255,.4); color: #fff; }
+    .btn-ghost:hover { background: rgba(255,255,255,.1); }
+    .btn-wa { background: var(--whatsapp); color: #fff; }
+    .btn-wa:hover { background: var(--whatsapp-dark); }
+    .hero-art { position: relative; }
+    .hero-art img {
+      width: 100%; filter: drop-shadow(0 30px 40px rgba(0,0,0,.45));
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-        nav {
-            background: #12345a;
-            text-align: center;
-            padding: 14px;
-        }
+    .brand-strip { background: var(--navy-deep); color: #8fa3cf; padding: 16px 0; font-weight: 700; }
+    .brand-strip .container { display: flex; flex-wrap: wrap; gap: 8px 28px; justify-content: center; font-family: var(--font-head); font-size: .95rem; }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 12px;
-            font-weight: bold;
-        }
+    /* ===== Sections ===== */
+    section { padding: 72px 0; }
+    .section-head { margin-bottom: 32px; }
+    .section-head h2 { font-family: var(--font-head); font-size: clamp(1.6rem, 3.5vw, 2.3rem); color: var(--navy); line-height: 1.2; }
+    .section-head p { color: var(--muted); margin-top: 8px; max-width: 600px; }
 
-        .hero {
-            background: #dceaff;
-            text-align: center;
-            padding: 55px 20px;
-        }
+    /* ===== Filter buttons ===== */
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .chip {
+      border: 1.5px solid var(--line); background: #fff; color: var(--text);
+      padding: 8px 18px; border-radius: 999px; font-weight: 500; font-size: .95rem;
+      cursor: pointer; font-family: var(--font-body);
+    }
+    .chip:hover { border-color: var(--blue); }
+    .chip.active { background: var(--navy); border-color: var(--navy); color: #fff; }
 
-        .hero h2 {
-            font-size: 32px;
-            margin: 0 0 15px;
-        }
+    /* ===== Product grid ===== */
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .card {
+      background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+      overflow: hidden; display: flex; flex-direction: column;
+      transition: box-shadow .2s, border-color .2s;
+    }
+    .card:hover { box-shadow: 0 14px 34px rgba(10,31,68,.12); border-color: #c5d2ea; }
+    .card-img { background: linear-gradient(160deg, #eaf0fb, #f7f9fe); padding: 18px 18px 8px; }
+    .card-body { padding: 18px 20px 22px; display: flex; flex-direction: column; flex: 1; }
+    .badge {
+      align-self: flex-start; font-size: .8rem; font-weight: 700; color: var(--blue);
+      background: #e6eeff; padding: 3px 10px; border-radius: 999px; margin-bottom: 8px;
+    }
+    .card h3 { font-family: var(--font-head); font-size: 1.15rem; color: var(--navy); line-height: 1.3; }
+    .card p.desc { color: var(--muted); font-size: .97rem; margin: 8px 0 14px; flex: 1; }
+    .price { font-family: var(--font-head); font-weight: 800; font-size: 1.55rem; color: var(--navy); margin-bottom: 14px; }
+    .price small { font-family: var(--font-body); font-weight: 500; font-size: .82rem; color: var(--muted); }
+    .card .btn { width: 100%; }
 
-        .hero p {
-            font-size: 17px;
-            line-height: 1.6;
-        }
+    .note { margin-top: 28px; color: var(--muted); font-size: .92rem; }
 
-        .button {
-            display: inline-block;
-            background: #087f5b;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 10px;
-        }
+    /* ===== About ===== */
+    .about { background: #fff; }
+    .about-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: start; }
+    .about p { color: var(--muted); margin-bottom: 14px; }
+    .points { display: grid; gap: 14px; }
+    .point { border-left: 4px solid var(--teal); background: var(--bg); padding: 14px 18px; border-radius: 0 12px 12px 0; }
+    .point strong { display: block; font-family: var(--font-head); color: var(--navy); }
+    .point span { color: var(--muted); font-size: .95rem; }
 
-        .button:hover {
-            background: #056344;
-        }
+    /* ===== Contact ===== */
+    .contact { background: var(--navy); color: #fff; }
+    .contact .section-head h2 { color: #fff; }
+    .contact .section-head p { color: #c3d0ee; }
+    .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .contact-box {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14);
+      border-radius: var(--radius); padding: 24px;
+    }
+    .contact-box h3 { font-family: var(--font-head); font-size: 1.05rem; margin-bottom: 6px; }
+    .contact-box p { color: #c3d0ee; font-size: .97rem; margin-bottom: 16px; }
+    .contact-box .big { color: #fff; font-family: var(--font-head); font-weight: 700; font-size: 1.25rem; margin-bottom: 16px; }
+    .contact-box .btn { width: 100%; }
 
-        .section {
-            padding: 35px 18px;
-            max-width: 1100px;
-            margin: auto;
-        }
+    footer { background: var(--navy-deep); color: #8fa3cf; text-align: center; padding: 24px 0; font-size: .92rem; }
 
-        .section h2 {
-            text-align: center;
-            margin-bottom: 25px;
-        }
+    /* Floating WhatsApp button */
+    .float-wa {
+      position: fixed; right: 18px; bottom: 18px; z-index: 60;
+      background: var(--whatsapp); color: #fff; text-decoration: none;
+      padding: 13px 18px; border-radius: 999px; font-weight: 700;
+      box-shadow: 0 8px 22px rgba(0,0,0,.28);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .float-wa:hover { background: var(--whatsapp-dark); }
 
-        .products {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 22px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 10px;
-            padding: 22px;
-            text-align: center;
-            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
-        }
-
-        .laptop-icon {
-            font-size: 65px;
-            margin: 10px 0;
-        }
-
-        .card h3 {
-            color: #12345a;
-        }
-
-        .description {
-            line-height: 1.6;
-            color: #555;
-        }
-
-        .price {
-            color: #087f5b;
-            font-size: 22px;
-            font-weight: bold;
-        }
-
-        .about {
-            background: white;
-            text-align: center;
-            padding: 35px 20px;
-            line-height: 1.8;
-        }
-
-        .contact {
-            background: #dceaff;
-            text-align: center;
-            padding: 35px 20px;
-        }
-
-        footer {
-            background: #071b35;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-
-        @media (max-width: 500px) {
-            header h1 {
-                font-size: 25px;
-            }
-
-            .hero h2 {
-                font-size: 26px;
-            }
-
-            nav a {
-                margin: 0 6px;
-                font-size: 14px;
-            }
-        }
-    </style>
+    /* ===== Tablet and phone ===== */
+    @media (max-width: 960px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { grid-template-columns: 1fr; }
+      .about-grid, .hero-grid { grid-template-columns: 1fr; }
+      .hero-art { max-width: 460px; }
+    }
+    @media (max-width: 760px) {
+      .menu-btn { display: block; }
+      nav ul {
+        display: none; position: absolute; top: 68px; left: 0; right: 0;
+        flex-direction: column; align-items: stretch; gap: 0;
+        background: var(--navy-deep); padding: 10px 4%; border-bottom: 1px solid rgba(255,255,255,.1);
+      }
+      nav ul.open { display: flex; }
+      nav a { padding: 14px 12px; border-radius: 10px; }
+      nav a.nav-cta { text-align: center; margin-top: 6px; }
+    }
+    @media (max-width: 560px) {
+      body { font-size: 16px; }
+      .grid { grid-template-columns: 1fr; }
+      section { padding: 52px 0; }
+      .hero { padding: 48px 0 56px; }
+      .float-wa span { display: none; }
+      .float-wa { padding: 14px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .hero-art img { animation: none; }
+    }
+  </style>
 </head>
-
 <body>
 
-    <header>
-        <h1>Brainwave Laptop Store</h1>
-        <p>Your destination for affordable laptops in Ghana</p>
-    </header>
+  <!-- ===== Header ===== -->
+  <header>
+    <div class="container nav">
+      <a href="#home" class="logo" aria-label="Brainwave Laptop Store home">
+        <span class="logo-mark" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h4l3-8 4 16 3-8h6"/></svg>
+        </span>
+        <span>Brainwave <em>Laptops</em></span>
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+      <nav aria-label="Main menu">
+        <ul id="menu">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#laptops">Laptops</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="#" class="nav-cta" data-general-wa>WhatsApp</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#laptops">Laptops</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-    </nav>
-
-    <section class="hero" id="home">
-        <h2>Find the Right Laptop for You</h2>
-        <p>
-            Discover affordable laptops for students, businesses,
-            programming, and everyday use.
-        </p>
-        <a href="#laptops" class="button">Explore Laptops</a>
-    </section>
-
-    <section class="section" id="laptops">
-        <h2>Our Featured Laptops</h2>
-
-        <div class="products">
-
-            <article class="card">
-                <div class="laptop-icon">💻</div>
-                <h3>Student Laptop</h3>
-                <p class="description">
-                    Suitable for assignments, online learning,
-                    browsing, and everyday tasks.
-                </p>
-                <p class="price">GH₵ 2,500</p>
-                <a href="#contact" class="button">Enquire Now</a>
-            </article>
-
-            <article class="card">
-                <div class="laptop-icon">💻</div>
-                <h3>Business Laptop</h3>
-                <p class="description">
-                    A laptop option for office work, presentations,
-                    business applications, and productivity.
-                </p>
-                <p class="price">GH₵ 3,500</p>
-                <a href="#contact" class="button">Enquire Now</a>
-            </article>
-
-            <article class="card">
-                <div class="laptop-icon">💻</div>
-                <h3>Performance Laptop</h3>
-                <p class="description">
-                    An option for programming, creative projects,
-                    and demanding everyday workloads.
-                </p>
-                <p class="price">GH₵ 4,500</p>
-                <a href="#contact" class="button">Enquire Now</a>
-            </article>
-
+  <!-- ===== Hero ===== -->
+  <main>
+    <section class="hero" id="home" style="padding-bottom:80px">
+      <div class="container hero-grid">
+        <div>
+          <h1>Find the right laptop. Order in one tap on WhatsApp.</h1>
+          <p>Brainwave Laptop Store brings you laptops from Dell, HP, Lenovo, ASUS, Acer and Apple for school, work and business. Pick a laptop, tap order, and chat with us directly.</p>
+          <div class="hero-actions">
+            <a href="#laptops" class="btn btn-primary">Browse laptops</a>
+            <a href="#" class="btn btn-ghost" data-general-wa>Chat on WhatsApp</a>
+          </div>
         </div>
+        <div class="hero-art">
+          <img id="heroImg" alt="Illustration of a laptop">
+        </div>
+      </div>
     </section>
 
+    <div class="brand-strip" aria-label="Brands we sell">
+      <div class="container">
+        <span>Dell</span><span>HP</span><span>Lenovo</span><span>ASUS</span><span>Acer</span><span>Apple</span>
+      </div>
+    </div>
+
+    <!-- ===== Products ===== -->
+    <section id="laptops">
+      <div class="container">
+        <div class="section-head">
+          <h2>Our laptops</h2>
+          <p>Choose a laptop and tap the green button. WhatsApp opens with the laptop name and price already typed for you.</p>
+        </div>
+
+        <div class="filters" id="filters" role="group" aria-label="Filter laptops by brand"></div>
+        <div class="grid" id="productGrid"></div>
+
+        <p class="note">Prices and pictures are samples. Confirm the final price, stock and delivery with us on WhatsApp. Payment is agreed directly with the seller; this website does not take payments.</p>
+      </div>
+    </section>
+
+    <!-- ===== About ===== -->
     <section class="about" id="about">
-        <h2>About Brainwave Laptop Store</h2>
-        <p>
-            We aim to help customers find laptops that suit
-            their needs and budgets. Contact us to ask about
-            available models, specifications, and prices.
-        </p>
+      <div class="container about-grid">
+        <div>
+          <div class="section-head">
+            <h2>About Us</h2>
+          </div>
+          <p>Brainwave Laptop Store helps students, professionals and small businesses find a laptop that fits their work and their budget.</p>
+          <p>We keep things simple: browse the laptops, send us a message on WhatsApp, and we will answer your questions about specifications, price and availability before you decide.</p>
+        </div>
+        <div class="points">
+          <div class="point"><strong>Popular brands</strong><span>Dell, HP, Lenovo, ASUS, Acer and Apple.</span></div>
+          <div class="point"><strong>Honest advice</strong><span>Tell us what you need the laptop for and we will suggest a fit.</span></div>
+          <div class="point"><strong>Fast replies</strong><span>Order and ask questions directly on WhatsApp.</span></div>
+        </div>
+      </div>
     </section>
 
+    <!-- ===== Contact ===== -->
     <section class="contact" id="contact">
-        <h2>Contact Us</h2>
-        <p>Interested in a laptop? Get in touch with our store.</p>
-        <p><strong>Phone/WhatsApp:</strong> Add the store's contact number here.</p>
-        <p><strong>Location:</strong> Ghana</p>
+      <div class="container">
+        <div class="section-head">
+          <h2>Contact Us</h2>
+          <p>The quickest way to reach us is WhatsApp. You can also call.</p>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-box">
+            <h3>WhatsApp</h3>
+            <div class="big" id="phoneShown"></div>
+            <a href="#" class="btn btn-wa" data-general-wa>Message us on WhatsApp</a>
+          </div>
+          <div class="contact-box">
+            <h3>Phone call</h3>
+            <div class="big" id="phoneShown2"></div>
+            <a href="#" class="btn btn-primary" id="callLink">Call now</a>
+          </div>
+          <div class="contact-box">
+            <h3>How ordering works</h3>
+            <p>1. Pick a laptop.<br>2. Tap "Order on WhatsApp".<br>3. We confirm price, stock and delivery with you in the chat.</p>
+          </div>
+        </div>
+      </div>
     </section>
+  </main>
 
-    <footer>
-        <p>
-            &copy; <span id="year"></span> Brainwave Laptop Store.
-            All rights reserved.
-        </p>
-    </footer>
+  <footer>
+    <div class="container">&copy; <span id="year"></span> Brainwave Laptop Store. All rights reserved.</div>
+  </footer>
 
-    <script>
-        document.getElementById("year").textContent =
-            new Date().getFullYear();
-    </script>
+  <a href="#" class="float-wa" data-general-wa aria-label="Chat on WhatsApp">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2a9.9 9.9 0 0 0-8.5 14.9L2 22l5.25-1.5A9.95 9.95 0 1 0 12.04 2Zm0 18.1c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3.1.9.9-3-.2-.3a8.1 8.1 0 1 1 6.8 3.7Zm4.5-6c-.25-.12-1.45-.7-1.67-.8-.23-.08-.4-.12-.56.12-.17.25-.64.8-.78.96-.14.17-.29.18-.53.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.22-1.46-1.37-1.7-.14-.25-.02-.38.1-.5.11-.11.25-.29.37-.43.12-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.76-1.85-.2-.48-.4-.42-.56-.42h-.47c-.17 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.36 1 2.52c.12.17 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.1.16 1.52.1.46-.07 1.45-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.23-.17-.48-.29Z"/></svg>
+    <span>Chat with us</span>
+  </a>
 
+  <script>
+    /* =====================================================
+       SETTINGS: change these to match your real store
+       ===================================================== */
+
+    // WhatsApp number in international format, no plus sign, no spaces.
+    // 0596833211 in Ghana becomes 233596833211
+    var WHATSAPP_NUMBER = "233596833211";
+    var PHONE_DISPLAY   = "0596 833 211";
+    var STORE_NAME      = "Brainwave Laptop Store";
+
+    // Laptops. The prices and pictures are placeholders.
+    // To change a laptop, edit its line. To add one, copy a block and paste it below.
+    // "image" can stay as makeLaptop(...) or you can put a photo link, e.g. "images/dell.jpg"
+    var products = [
+      { brand: "Dell",   name: "Dell Inspiron 15",       price: 4800, desc: "Reliable all-rounder for school and office work. Intel Core i5, 8GB RAM, 512GB SSD.", colors: ["#1f6bff", "#0a3a9c"] },
+      { brand: "HP",     name: "HP Pavilion 15",         price: 5200, desc: "Slim design with a bright display for study, video calls and streaming. Core i5, 16GB RAM, 512GB SSD.", colors: ["#12c2a5", "#0b6f8a"] },
+      { brand: "Lenovo", name: "Lenovo IdeaPad Slim 3",  price: 4300, desc: "Light and affordable laptop for everyday tasks and browsing. Ryzen 5, 8GB RAM, 256GB SSD.", colors: ["#ff6b4a", "#b0213e"] },
+      { brand: "ASUS",   name: "ASUS VivoBook 15",       price: 4600, desc: "Fast start-up and a comfortable keyboard for long typing sessions. Core i3, 8GB RAM, 512GB SSD.", colors: ["#8a5cff", "#3a1d9c"] },
+      { brand: "Acer",   name: "Acer Aspire 5",          price: 4900, desc: "Strong performance for multitasking, design basics and coding. Core i5, 16GB RAM, 512GB SSD.", colors: ["#2dd36f", "#0b7a45"] },
+      { brand: "Apple",  name: "Apple MacBook Air 13",   price: 12500, desc: "Thin, quiet and long-lasting battery for creators and professionals. M1 chip, 8GB RAM, 256GB SSD.", colors: ["#9aa7bd", "#4a566b"] }
+    ];
+
+    /* =====================================================
+       Code below makes the page work. Beginners can leave it.
+       ===================================================== */
+
+    // Draws a simple laptop picture (placeholder) with the brand name on the screen.
+    function makeLaptop(brand, c1, c2) {
+      var svg =
+        '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 270">' +
+        '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">' +
+        '<stop offset="0" stop-color="' + c1 + '"/><stop offset="1" stop-color="' + c2 + '"/></linearGradient></defs>' +
+        '<ellipse cx="200" cy="248" rx="170" ry="12" fill="#000" opacity=".12"/>' +
+        '<rect x="62" y="16" width="276" height="178" rx="14" fill="#1a2238"/>' +
+        '<rect x="72" y="26" width="256" height="158" rx="6" fill="url(#g)"/>' +
+        '<path d="M72 150 Q150 110 230 140 T328 120 V184 H72Z" fill="#fff" opacity=".12"/>' +
+        '<text x="200" y="116" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="40" fill="#fff">' + brand + '</text>' +
+        '<path d="M30 200 H370 L386 226 Q388 236 376 236 H24 Q12 236 14 226Z" fill="#cdd5e4"/>' +
+        '<path d="M30 200 H370 L376 210 H24Z" fill="#e6ebf5"/>' +
+        '<rect x="165" y="212" width="70" height="8" rx="4" fill="#aab4c9"/>' +
+        '</svg>';
+      return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+    }
+
+    // Formats a number like 4800 as "4,800"
+    function formatPrice(n) { return n.toLocaleString("en-GH"); }
+
+    // Builds the WhatsApp link with the chosen laptop name and price in the message
+    function orderLink(product) {
+      var message =
+        "Hello " + STORE_NAME + ", I would like to order the " + product.name +
+        " at GH₵ " + formatPrice(product.price) + ". Is it available?";
+      return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
+    }
+
+    function generalLink() {
+      var message = "Hello " + STORE_NAME + ", I would like to ask about your laptops.";
+      return "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
+    }
+
+    var grid = document.getElementById("productGrid");
+    var filters = document.getElementById("filters");
+
+    function showProducts(brand) {
+      grid.innerHTML = "";
+      products.forEach(function (p) {
+        if (brand !== "All" && p.brand !== brand) return;
+
+        var card = document.createElement("article");
+        card.className = "card";
+
+        var imgWrap = document.createElement("div");
+        imgWrap.className = "card-img";
+        var img = document.createElement("img");
+        img.src = p.image || makeLaptop(p.brand, p.colors[0], p.colors[1]);
+        img.alt = p.name + " (sample picture)";
+        img.loading = "lazy";
+        imgWrap.appendChild(img);
+
+        var body = document.createElement("div");
+        body.className = "card-body";
+
+        var badge = document.createElement("span");
+        badge.className = "badge";
+        badge.textContent = p.brand;
+
+        var title = document.createElement("h3");
+        title.textContent = p.name;
+
+        var desc = document.createElement("p");
+        desc.className = "desc";
+        desc.textContent = p.desc;
+
+        var price = document.createElement("div");
+        price.className = "price";
+        price.textContent = "GH₵ " + formatPrice(p.price);
+
+        var btn = document.createElement("a");
+        btn.className = "btn btn-wa";
+        btn.href = orderLink(p);
+        btn.target = "_blank";
+        btn.rel = "noopener";
+        btn.textContent = "Order on WhatsApp";
+
+        body.append(badge, title, desc, price, btn);
+        card.append(imgWrap, body);
+        grid.appendChild(card);
+      });
+    }
+
+    // Brand filter buttons
+    var brands = ["All"];
+    products.forEach(function (p) { if (brands.indexOf(p.brand) === -1) brands.push(p.brand); });
+    brands.forEach(function (b, i) {
+      var chip = document.createElement("button");
+      chip.className = "chip" + (i === 0 ? " active" : "");
+      chip.type = "button";
+      chip.textContent = b;
+      chip.addEventListener("click", function () {
+        document.querySelectorAll(".chip").forEach(function (c) { c.classList.remove("active"); });
+        chip.classList.add("active");
+        showProducts(b);
+      });
+      filters.appendChild(chip);
+    });
+
+    showProducts("All");
+
+    // General WhatsApp links (menu, hero, contact, floating button)
+    document.querySelectorAll("[data-general-wa]").forEach(function (a) {
+      a.href = generalLink();
+      a.target = "_blank";
+      a.rel = "noopener";
+    });
+
+    // Phone details
+    document.getElementById("phoneShown").textContent = PHONE_DISPLAY;
+    document.getElementById("phoneShown2").textContent = PHONE_DISPLAY;
+    document.getElementById("callLink").href = "tel:+" + WHATSAPP_NUMBER;
+
+    // Hero picture and footer year
+    document.getElementById("heroImg").src = makeLaptop("Brainwave", "#1f6bff", "#12c2a5");
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mobile menu
+    var menuBtn = document.getElementById("menuBtn");
+    var menu = document.getElementById("menu");
+    menuBtn.addEventListener("click", function () {
+      var open = menu.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", open);
+    });
+    menu.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () {
+        menu.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+  </script>
 </body>
 </html>
+        
